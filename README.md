@@ -2,7 +2,13 @@
 
 ## Cluster Registry
 
-Is an API server to keep track of and perform operations on multiple k8s clusters
+Is an API server to keep track of and perform operations on multiple k8s cluster
+
+- acts as a hosted `kubeconfig` file for multiple clusters (kubeconfig = a generic name for some file that configures access to one cluster)
+- lets you add custom annotations and label filtering for clusters
+- support for external controllers watching for cluster updates
+
+There are two modes-- raw `cluster-registry` (API server only), and `crinit` tool, for deploying a cluster registry onto an existing cluster.
 
 ### api endpoints
 
@@ -37,6 +43,8 @@ Is an API server to keep track of and perform operations on multiple k8s cluster
 - `api/` swagger spec
 - `cmd/`- includes `crinit.go` - spins up api server and backing etcd store (from images)
 - `pkg/`
-    - `/api`
-      - codegen for api swagger spec
+    - `/api` codegen for api swagger spec
       - model types
+      - `client`
+      - api server implementations for raw cluster-registry, and crinit cmd line tool. spins up an endpoint plus an Etcd store
+      - matching between cluster registry API endpoint and k8s API calls
