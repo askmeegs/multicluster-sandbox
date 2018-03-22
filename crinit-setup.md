@@ -14,3 +14,9 @@
 kubectl get clusters --context minireg
 
 ```
+
+
+
+### `crinit` aggregated (multiple clusters)
+
+coming soon!
